@@ -34,6 +34,9 @@ class Pacotes:
         for i, lista in enumerate(self.listas_guardadas, 1):
             print(f"Lista {i}: {lista}")
 
+#CÓDIGO FEITO POR GUILHERME NEVES
+
 
 p = Pacotes()
 p.iniciar()
+
