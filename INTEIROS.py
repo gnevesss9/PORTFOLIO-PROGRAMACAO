@@ -7,4 +7,6 @@ soma_esperada = 10
 if sumatoria(a, b, c, d, soma_esperada):
     print("Válido")
 else:
+
     print("Inválido")
+#CÓDIGO FEITO POR GUILHERME NEVES
