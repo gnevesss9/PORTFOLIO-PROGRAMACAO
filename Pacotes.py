@@ -1,98 +1,39 @@
-import random
-
 class Pacotes:
     def __init__(self):
-        self.lista_pacotes = [None] * 5
-        self.ultimo_numero = None
-        self.guardar = None 
+        self.listas_guardadas = []
+        self.lista_em_construcao = [None] * 5
 
-    def gerar_pacote(self):
-        while None in self.lista_pacotes:
-            print("=====================================================================")
-            print("Estado atual do pacote: ", self.lista_pacotes)
-            print("=====================================================================")
-            print("\n")
-            pacote = random.randint(-5, 10)
-            print("Número aleatório gerado: ", pacote)
+    def iniciar(self):
+        while len(self.listas_guardadas) < 2:
+            print(f"Lista atual: {self.lista_em_construcao}")
+            entrada = input("Insira um número: ")
 
-            escolha = input("Deseja guardar ou descartar o pacote? (1 para guardar, 0 para descartar): ")
+            if entrada.isdigit():
+                numero_inserido = int(entrada)
+                posicao = numero_inserido % 5  
 
-            if escolha == "0":
-                print(f"Pacote cujo número é {pacote} foi descartado.\n")
-                continue
-
-            elif escolha == "1":
-                posicao = int(input("Posição (0 a 4): "))
-                if not (0 <= posicao < len(self.lista_pacotes)):
-                    print("Posição inválida.")
-                    continue
-                if self.lista_pacotes[posicao] is not None:
-                    print("Esta posição já está ocupada.")
-                    continue
-                self.lista_pacotes[posicao] = pacote
-                print(f"Pacote cujo número é {pacote} foi adicionado na posição {posicao}.")
-            else:
-                print("Opção inválida.")
-                continue
-
-        print("Verificando estrutura...")
-        if self.lista_pacotes == sorted(self.lista_pacotes):
-            print("A estrutura está correta. Os vídeos irão reproduzir.")
-        else:
-            print("A estrutura não está correta. Os vídeos NÃO irão reproduzir.")
-        
-        if self.lista_pacotes == sorted(self.lista_pacotes) and None not in self.lista_pacotes:
-            self.ultimo_numero = self.lista_pacotes[-1]
-            self.guardar = self.lista_pacotes[:]
-            print("Criando uma nova lista de pacotes...")
-            self.reiniciar_lista()
-
-    def reiniciar_lista(self):
-        self.lista_pacotes = [None] * 5
-        print(f"Nova lista criada. Começe a lista pelo número {self.ultimo_numero}.")
-        while None in self.lista_pacotes:
-            print("=====================================================================\n")
-            print("Estado atual do pacote: ", self.lista_pacotes)
-            print("\n=====================================================================")
-            print("\n")
-            pacote = random.randint(-5, 10)
-            print("Número aleatório gerado: ", pacote)
-
-            escolha = input("Deseja guardar ou descartar o pacote? (1 para guardar, 0 para descartar): ")
-
-            if escolha == "0":
-                print(f"Pacote cujo número é {pacote} foi descartado.\n")
-                continue
-
-            elif escolha == "1":
-                posicao = int(input("Posição (0 a 4): "))
-                if not (0 <= posicao < len(self.lista_pacotes)):
-                    print("Posição inválida.")
-                    continue
-                if self.lista_pacotes[posicao] is not None:
-                    print("Esta posição já está ocupada.")
-                    continue
-
-                if posicao == 0 and pacote != self.ultimo_numero:
-                    print(f"O primeiro número da nova lista deve ser {self.ultimo_numero}.")
-                    continue
-
-                self.lista_pacotes[posicao] = pacote
-                print(f"Pacote cujo número é {pacote} foi adicionado na posição {posicao}.")
+                if self.lista_em_construcao[posicao] is None:
+                    self.lista_em_construcao[posicao] = numero_inserido
+                    print(f"Número {numero_inserido} colocado na posição {posicao}.\n")
+                else:
+                    print(f"A posição {posicao} já está ocupada pelo número {self.lista_em_construcao[posicao]}.\n")
 
             else:
-                print("Opção inválida.")
-                continue
+                print("Por favor, insira apenas números inteiros.\n")
 
-        print("Verificando estrutura...")
-        if self.lista_pacotes == sorted(self.lista_pacotes):
-            print("A estrutura está correta. Os vídeos irão reproduzir.")
-        else:
-            print("A estrutura não está correta. Os vídeos NÃO irão reproduzir.")
+            if all(v is not None for v in self.lista_em_construcao):
+                print(f"Lista final: {self.lista_em_construcao}")
+                self.listas_guardadas.append(self.lista_em_construcao[:])
+                self.lista_em_construcao = [None] * 5
 
-        print("Listas completas.")
-        print("Primeira lista: ", self.guardar)
-        print("Segunda lista: ", self.lista_pacotes)
+                if len(self.listas_guardadas) < 2:
+                    print("Iniciando nova lista.\n")
+
+        print("\nAs duas listas foram concluídas com sucesso!")
+        print("Listas finais:")
+        for i, lista in enumerate(self.listas_guardadas, 1):
+            print(f"Lista {i}: {lista}")
+
 
 p = Pacotes()
-p.gerar_pacote()
+p.iniciar()
