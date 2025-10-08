@@ -28,6 +28,7 @@ class Estudante:
     
 aluno1 = Estudante("Ana", 17, "Informática", "Feminino", "Turma A", 12)
 aluno2 = Estudante("João", 16, "Ciências", "Masculino", "Turma B", 12)
+#CÓDIGO FEITO POR GUILHERME NEVES
 
 aluno1.adicionar_nota(85) # Adiciona uma nota para Ana
 aluno1.adicionar_nota(92) # Adiciona outra nota para Ana
