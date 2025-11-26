@@ -1,4 +1,4 @@
-# PROJETO
+# PORTFÓLIO
 
 Este é um projeto criado por **Guilherme Neves**.  
 Aqui irei partilhar códigos que desenvolvo durante o curso de GPSI, desde o primeiro dia do curso até aos projetos atuais.
